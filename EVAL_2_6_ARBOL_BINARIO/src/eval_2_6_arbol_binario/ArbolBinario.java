@@ -107,4 +107,7 @@ public class ArbolBinario {
     }
 
     //Como borrar nodos
+    public void borrar(){
+        
+    }
 }
