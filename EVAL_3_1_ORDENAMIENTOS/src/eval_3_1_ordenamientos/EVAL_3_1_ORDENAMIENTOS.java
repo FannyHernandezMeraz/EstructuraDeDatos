@@ -14,15 +14,25 @@ public class EVAL_3_1_ORDENAMIENTOS {
         int[] arregloSel = new int[arregloDatos.length];
         System.out.println("A R R E G L O   O R I G I N A L : ");
         llenar(arregloDatos);
-        //imprimir(arregloDatos);
+        imprimir(arregloDatos);
 
-        System.out.println("A R R E G L O   S O R T : ");
+        System.out.println("S E L E C C T I O N   S O R T : ");
         copia(arregloDatos, arregloSel);
-        //imprimir(arregloSel);
+        imprimir(arregloSel);
         double ini = System.nanoTime();
         selectionSort(arregloSel);
         double fin = System.nanoTime();
-        //imprimir(arregloSel);
+        imprimir(arregloSel);
+        System.out.println("Selection sort = " + (fin - ini));
+        
+        System.out.println("I N S E R T I O N   S O R T : ");
+        copia(arregloDatos, arregloSel);
+        imprimir(arregloSel);
+        ini = System.nanoTime();
+        selectionSort(arregloSel);
+        fin = System.nanoTime();
+        imprimir(arregloSel);
+        System.out.println("Insertion sort = " + (fin - ini));
     }
 
     //LLENAR ARREGLO
@@ -69,6 +79,26 @@ public class EVAL_3_1_ORDENAMIENTOS {
                 arreglo[i] = arreglo[min];
                 arreglo[min] = temp;
             }
+        }
+    }
+
+    //INSERTION SORT O(n^2)
+    public static void insertionSort(int[] arreglo) {
+        for (int i = 1; i < arreglo.length; i++) {
+            int temp = arreglo[i]; //es el valor que vamos a ordenar
+            int insP = i;
+            //EN QUE PUNTO DEBE DE QUEDAR TEMP
+            //ESA POSICION QUEDA ALMACENADA EN insP
+            for (int prev = i - 1; prev >= 0; prev--) { //comparar
+                if (arreglo[prev] > temp) {
+                    //swap (intercambio parcial)
+                    arreglo[insP] = arreglo[prev];
+                    insP--;
+                } else {
+                    break;
+                }
+            }
+            arreglo[insP] = temp;
         }
     }
 }
